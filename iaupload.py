@@ -54,10 +54,6 @@ identifier = args.identifier
 mdfile = args.metadata
 files = args.file
 
-pp.pprint(files)
-
-exit(0)
-
 ###
 # Load the authorization keys
 ###
