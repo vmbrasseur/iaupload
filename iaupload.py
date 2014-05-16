@@ -8,53 +8,55 @@
 import internetarchive
 import yaml
 import pprint
+import argparse
 
 ###
 # TODO: Add some command line args; hard coding everything for now
-# --config
 # --access_key
 # --secret_key
-# --identifier
-# --file (repeatable)
 # --directory (repeatable; recursive; push to files)
 # --verbose
-# --metadata (YAML)
 # --debug
 # --log
 # --logfile
-# --help
 ###
-
-config = "./iaupload.yaml"
-identifier = "sfperlmongerslightningtalks2014"
-mdfile = "/Users/brasseur/Desktop/md.yaml"
-files = ['/Users/brasseur/Desktop/Lightning_Talk_Slides/02-Quinn_Weaver-Semantic_Versioning.pdf',
-         '/Users/brasseur/Desktop/Lightning_Talk_Slides/03-Eric_Eslinger-Token-Based_Authentication_with_AngularJS.pdf',
-         '/Users/brasseur/Desktop/Lightning_Talk_Slides/04-Daniel_Lieberman-Breaking_Habits.pdf',
-         '/Users/brasseur/Desktop/Lightning_Talk_Slides/05-Asheesh_Laroia-Welcoming_New_Contributors_What_Ive_Learned_as_a_Debian_Developer.pdf',
-         '/Users/brasseur/Desktop/Lightning_Talk_Slides/06-Josh_Berkus-Scale_Fail.pdf',
-         '/Users/brasseur/Desktop/Lightning_Talk_Slides/07-Quinn_Weaver-Python_vs_Perl_Some_Gotchas.pdf',
-         '/Users/brasseur/Desktop/Lightning_Talk_Slides/08-Eric_Eslinger-Big_Mistakes_in_Educational_Technology.pdf',
-         '/Users/brasseur/Desktop/Lightning_Talk_Slides/09-Darin_Wilson-Coding_Calisthenics_with_Exercism.io.pdf',
-         '/Users/brasseur/Desktop/Lightning_Talk_Slides/10-Mike_Covington-Improving_Reproducibility_and_Record_Keeping_with_Log_Reproducible.pdf',
-         '/Users/brasseur/Desktop/Lightning_Talk_Slides/11-Caroline_Burns-Perl_Selenium.pdf',
-         '/Users/brasseur/Desktop/Lightning_Talk_Videos/01-Fred_Moyer-Ready_Set_Go.mov',
-         '/Users/brasseur/Desktop/Lightning_Talk_Videos/02-Quinn_Weaver-Semantic_Versioning.mov',
-         '/Users/brasseur/Desktop/Lightning_Talk_Videos/03-Eric_Eslinger-Token-Based_Authentication_with_AngularJS.mov',
-         '/Users/brasseur/Desktop/Lightning_Talk_Videos/05-Asheesh_Laroia-Welcoming_New_Contributors_What_Ive_Learned_as_a_Debian_Developer.mov',
-         '/Users/brasseur/Desktop/Lightning_Talk_Videos/06-Josh_Berkus-Scale_Fail.mov',
-         '/Users/brasseur/Desktop/Lightning_Talk_Videos/07-Quinn_Weaver-Python_vs_Perl_Some_Gotchas.mov',
-         '/Users/brasseur/Desktop/Lightning_Talk_Videos/08-Eric_Eslinger-Big_Mistakes_in_Educational_Technology.mov',
-         '/Users/brasseur/Desktop/Lightning_Talk_Videos/09-Darin_Wilson-Coding_Calisthenics_with_Exercism.io.mov',
-         '/Users/brasseur/Desktop/Lightning_Talk_Videos/10-Mike_Covington-Improving_Reproducibility_and_Record_Keeping_with_Log_Reproducible.mov',
-         '/Users/brasseur/Desktop/Lightning_Talk_Videos/11-Caroline_Burns-Perl_Selenium.mov',
-         '/Users/brasseur/Desktop/Lightning_Talk_Videos/12-Stephen_Corona-Why_You_Should_Write_a_Tech_eBook.mov'
-]
 
 ###
 # For debug purposes
 ###
 pp = pprint.PrettyPrinter(indent=2)
+
+
+ap = argparse.ArgumentParser(description="Upload files to Internet Archive.")
+ap.add_argument('--config',
+                dest="config",
+                default="./iaupload.yaml",
+                help="Path and filename of YAML config file"
+               )
+ap.add_argument('--metadata',
+                dest="metadata",
+                default="./md.yaml",
+                help="Path and filename of YAML metadata file"
+               )
+ap.add_argument('--identifier',
+                dest='identifier',
+                help="Identifier of Internet Archive item to which to upload the file(s)",
+                required=True
+               )
+ap.add_argument('file',
+                nargs='+',
+                help="File to upload (repeatable)"
+               )
+args = ap.parse_args()
+
+config = args.config
+identifier = args.identifier
+mdfile = args.metadata
+files = args.file
+
+pp.pprint(files)
+
+exit(0)
 
 ###
 # Load the authorization keys

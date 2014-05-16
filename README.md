@@ -6,7 +6,10 @@
 
 ## SYNOPSIS
 
-`iaupload`
+```
+usage: iaupload.py [-h] [--config CONFIG] [--metadata METADATA]
+       --identifier IDENTIFIER file [file ...]
+```
 
 ## DESCRIPTION
 
@@ -14,22 +17,50 @@
 
 This script uses the [internetarchive Python Library](https://github.com/jjjake/ia-wrapper).
 
-As of the initial commit of this script, many important bits of information are hardcoded:
+## OPTIONS
 
-* Item identifier
-* Files to upload
-* Location/name of the configuration file
-* Location/name of the metadata file
-* Etc.
+### --config
 
-Eventually these will all be parameterized and configurable at the command line. Please check the issues in this repo if you'd like to help with that work.
+Defines the configuration file for the script.
+
+This file contains your Internet Archive S3 API credentials. You may retrieve your credentials from [your Internet Archive patron record](http://www.archive.org/account/s3.php).
+
+The configuration file must be a [YAML](http://www.yaml.org) file containing two elements:
+
+```
+aws_access_key_id: 00000000000000000
+aws_secret_access_key: 00000000000000000
+```
+
+Both elements are required for the script to operate.
+
+An [example configuration file](./iaupload.yaml.example) is included in this repository.
+
+If this option is not defined at the command line, it will default to a value of `./iaupload.yaml`.
+
+### --identifier
+
+Defines the [identifier](https://github.com/vmbrasseur/IAS3API/blob/master/appendices/terminology.md#identifier) for your Internet Archive item.
+
+This identifier must be unique across the entire Internet Archive.
+
+This is a required option.
+
+### --metadata
+
+Defines the file containing the metadata for the item. [See here](https://github.com/vmbrasseur/IAS3API/blob/master/metadata.md) to learn more about the metadata options for Internet Archive items.
+
+This metadata file must be a [YAML](http://www.yaml.org) file and can contain as many elements as you need to describe your item.
+
+An [example metadata file](./md.yaml.example) is included in this repository
+
+If this options is not defined at the command line, it will default to a value of `./md.yaml'.
 
 ## EXAMPLE
 
-Edit script to set variables accordingly…then:
-
 ```
-iaupload
+./iaupload.py --identifier=mytestitem --config=./iauploadconfig.yaml --metadata=mytestitem_md.yaml \
+~/Desktop/file1.jpg ~/Desktop/file2.jpg ~/Desktop/file3.jpg
 ```
 
 ## AUTHOR
@@ -38,7 +69,7 @@ This script is written and maintained by [VM Brasseur](http://vmbrasseur.com).
 
 ## REPORTING BUGS
 
-If you use this script and would like to report bugs or suggest enhancements, please use the issues on this repo.
+If you use this script and would like to report bugs or suggest enhancements, please use the [issues](https://github.com/vmbrasseur/iaupload/issues) on this repo.
 
 ## CONTRIBUTING
 
