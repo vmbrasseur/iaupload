@@ -89,3 +89,4 @@ Please see the `LICENSE` file for copies of these licenses.
 
 * [ia-wrapper](https://github.com/jjjake/ia-wrapper)
 * [IAS3API Documentation](https://github.com/vmbrasseur/IAS3API)
+* [iadownload](https://github.com/vmbrasseur/iadownload)
