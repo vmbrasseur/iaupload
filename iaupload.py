@@ -53,6 +53,7 @@ config = args.config
 identifier = args.identifier
 mdfile = args.metadata
 files = args.file
+itemurlbase = "https://archive.org/details/"
 
 ###
 # Load the authorization keys
@@ -108,3 +109,8 @@ for file in files:
 ###
 # TODO: Add unit tests
 ###
+
+###
+# All done
+###
+print "Item URL is: ", itemurlbase, identifier, "\n"
