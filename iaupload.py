@@ -113,4 +113,4 @@ for file in files:
 ###
 # All done
 ###
-print "Item URL is: ", itemurlbase, identifier, "\n"
+print "Item URL is: ", itemurlbase + identifier, "\n"
