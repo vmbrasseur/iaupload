@@ -1,0 +1,5 @@
+title: 'SCALE 15x - Passing the Baton: Succession Planning for FOSS leadership'
+collection: 'computersandtechvideos'
+mediatype: 'movies'
+scanner: 'VM Brasseur'
+subject: 'scale; scale15x; scale 15x; socal linux expo; open source; FOSS; succession planning'
