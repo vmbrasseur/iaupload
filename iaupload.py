@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 ###
 # Script to upload to IA using the Python library
@@ -89,14 +89,14 @@ item = internetarchive.get_item(identifier)
 #       just set it to FALSE at the end of its if block
 num = 1
 
-print "There are", len(files), "files to upload.\n"
+print ("There are", len(files), "files to upload.")
 
 ###
 # Loop through files to allow for progress printing
 ###
 # TODO: Add some sort of simple/basic progress indicator (. every 30s?)
 for file in files:
-  print "Uploading ", file, "\n"
+  print ("Uploading ", file)
   if num == 1:
     # Only the first file needs to send metadata
     item.upload(file, access_key=aws_access_key_id, secret_key=aws_secret_access_key, metadata=md)
@@ -113,4 +113,4 @@ for file in files:
 ###
 # All done
 ###
-print "Item URL is: ", itemurlbase + identifier, "\n"
+print ("Item URL is: ", itemurlbase + identifier)
